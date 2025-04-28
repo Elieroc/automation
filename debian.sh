@@ -24,7 +24,7 @@ function conf_fish {
 }
 
 function conf_motd {
-        curl https://..../custom-motd -o /etc/motd/99-custom
+        curl -s https://raw.githubusercontent.com/Elieroc/automation/refs/heads/main/ressources/custom-motd -o /etc/motd/99-custom
 }
 
 function conf_docker {

@@ -21,7 +21,7 @@ function install_fish {
         apt install -y fish
         chsh -s /usr/bin/fish
         /usr/bin/fish -c 'set -U fish_greeting'
-        echo -e "\nabbr ipconfig 'ip -c -br a|grep -E \"ens|eth\"'" >> ~/.config/fish/config.fish
+        echo -e "\nabbr ipconfig 'ip -c -br a" >> ~/.config/fish/config.fish
 }
 
 function install_motd {

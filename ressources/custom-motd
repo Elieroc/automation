@@ -25,10 +25,10 @@ swap_usage=$(free -h | awk '/Swap:/ {print $3 " / " $2}')
 ips=$(ip -c -br a | grep -E "eth|ens" | awk '{print $1, $2, $3}')
 
 # Affichage
-echo -e "\n${cyan}=====================  System  ======================${reset}"
-echo -e "${yellow} Date/Heure  : ${green}$datetime${reset}"
-echo -e "${yellow} Charge CPU  : ${green}$cpu_usage%${reset}"
-echo -e "${yellow} RAM         : ${green}$ram_usage${reset}"
-echo -e "${yellow} SWAP        : ${green}$swap_usage${reset}"
-echo -e "${yellow} IP          : $ips${reset}"
+echo -e "\n${cyan}=====================  System  =======================${reset}"
+echo -e "/t${yellow}Date/Heure  : ${green}$datetime${reset}"
+echo -e "/t${yellow}Charge CPU  : ${green}$cpu_usage%${reset}"
+echo -e "/t${yellow}RAM         : ${green}$ram_usage${reset}"
+echo -e "/t${yellow}SWAP        : ${green}$swap_usage${reset}"
+echo -e "/t${yellow}IP          : $ips${reset}"
 echo -e "${cyan}======================================================${reset}\n"

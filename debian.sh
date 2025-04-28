@@ -34,7 +34,7 @@ function conf_docker {
 function main {
 
         read -p "Install Docker ? (y/n): " res
-        if [[ "$res" == "y" || "$res" == "Y" ]]; then conf_docker; fi;
+        if [[ "$res" == "y" || "$res" == "Y" ]]; then conf_docker; fi
 
         #conf_few_tools
         #conf_sudo

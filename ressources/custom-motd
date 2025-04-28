@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Couleurs
+cyan='\033[1;36m'
+green='\033[1;32m'
+yellow='\033[1;33m'
+red='\033[1;31m'
+reset='\033[0m'
+
+# Heure et date
+datetime=$(date '+%d-%m-%Y %H:%M:%S')
+
+# Calcul de la charge CPU en pourcentage
+cpu_idle=$(awk '/^cpu / {print $5}' /proc/stat)  # Temps d'inactivité CPU
+cpu_total=$(awk '/^cpu / {print $2+$3+$4+$5}' /proc/stat)  # Temps total CPU
+cpu_usage=$((100 - (cpu_idle * 100 / cpu_total)))  # Calcul du pourcentage d'utilisation
+
+# RAM utilisée
+ram_usage=$(free -h | awk '/Mem:/ {print $3 " / " $2}')
+
+# SWAP utilisée
+swap_usage=$(free -h | awk '/Swap:/ {print $3 " / " $2}')
+
+# IPs (sans MAC)
+ips=$(ip -c -br a | grep -E "eth|ens" | awk '{print $1, $2, $3}')
+
+# Affichage
+echo -e "\n${cyan}=====================  System  ======================${reset}"
+echo -e "${yellow} Date/Heure  : ${green}$datetime${reset}"
+echo -e "${yellow} Charge CPU  : ${green}$cpu_usage%${reset}"
+echo -e "${yellow} RAM         : ${green}$ram_usage${reset}"
+echo -e "${yellow} SWAP        : ${green}$swap_usage${reset}"
+echo -e "${yellow} IP          : $ips${reset}"
+echo -e "${cyan}======================================================${reset}\n"

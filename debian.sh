@@ -10,10 +10,11 @@ function install_few_tools {
         wget https://github.com/fastfetch-cli/fastfetch/releases/latest/download/fastfetch-linux-amd64.deb && apt install -y ./fastfetch-linux-amd64.deb && rm ./fastfetch-linux-amd64.deb
 }
 
-function install_sudo {
-        apt install -y sudo
-        read -p "User: " user
-        echo -e "\n$user ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
+function install_sudo() {
+    apt install -y sudo
+    for user in $(awk -F: '$6 ~ /^\/home\// {print $1}' /etc/passwd); do
+        echo "$user ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
+    done
 }
 
 function install_fish {

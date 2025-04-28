@@ -5,39 +5,33 @@
 # Date:   28/04/2025    #
 #########################
 
-function conf_few_tools {
+function install_few_tools {
         apt update && apt install -y ca-certificates curl gpg
         wget https://github.com/fastfetch-cli/fastfetch/releases/latest/download/fastfetch-linux-amd64.deb && apt install -y ./fastfetch-linux-amd64.deb && rm ./fastfetch-linux-amd64.deb
 }
 
-function conf_sudo {
+function install_sudo {
         apt install -y sudo
         read -p "User: " user
         echo -e "\n$user ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
 }
 
-function conf_fish {
+function install_fish {
         apt install -y fish
         chsh -s /usr/bin/fish
         /usr/bin/fish -c 'set -U fish_greeting'
         echo -e "\nabbr ipconfig 'ip -c -br a|grep -E \"ens|eth\"'" >> ~/.config/fish/config.fish
 }
 
-function conf_motd {
+function install_motd {
         curl -s https://raw.githubusercontent.com/Elieroc/automation/refs/heads/main/ressources/custom-motd -o /etc/motd/99-custom
 }
 
-function conf_docker {
-        apt install -y ca-certificates && install -m 0755 -d /etc/apt/keyrings && curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && chmod a+r /etc/apt/keyrings/docker.gpg && echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null && apt-get update && apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
-}
-
 function main {
-        #conf_few_tools
-        #conf_sudo
-        #conf_fish
-        #conf_motd
-        #conf_docker
+        install_few_tools
+        install_sudo
+        install_fish
+        install_motd
 }
 
-echo "Starting script..."
 main

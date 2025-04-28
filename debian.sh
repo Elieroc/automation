@@ -41,3 +41,5 @@ function main {
         #conf_fish
         #conf_motd
 }
+
+main

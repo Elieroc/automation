@@ -25,7 +25,7 @@ function install_fish {
 }
 
 function install_motd {
-        curl -s https://raw.githubusercontent.com/Elieroc/automation/refs/heads/main/ressources/custom-motd -o /etc/motd/99-custom
+        curl -s https://raw.githubusercontent.com/Elieroc/automation/refs/heads/main/ressources/custom-motd -o /etc/update-motd.d/99-custom
 }
 
 function main {

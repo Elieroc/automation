@@ -5,6 +5,8 @@ set_static_ip() {
     read -p "Gateway (press enter to skip): " gateway
     if [[ -n "$ip" && -n "$gateway" ]]; then
         interface=$(ip route | awk '/default/ {print $5}')
+        sed -i "/iface $interface inet dhcp/s/^/#/" /etc/network/interfaces
+        sed -i "/allow-hotplug $interface/s/^/#/" /etc/network/interfaces
         cat > /etc/network/interfaces.d/$interface.cfg <<EOF
 allow-hotplug $interface
 iface $interface inet static

@@ -42,4 +42,5 @@ function main {
         #conf_motd
 }
 
+echo "Starting script..."
 main

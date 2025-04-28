@@ -32,7 +32,7 @@ function conf_docker {
 }
 
 function main {
-
+        echo "[!]Enter in main func"
         read -p "Install Docker ? (y/n): " res
         if [[ "$res" == "y" || "$res" == "Y" ]]; then conf_docker; fi
 
